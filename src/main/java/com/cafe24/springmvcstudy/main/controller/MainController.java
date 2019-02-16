@@ -1,4 +1,4 @@
-package com.cafe24.springmvcstudy.welcome.controller;
+package com.cafe24.springmvcstudy.main.controller;
 
 import com.cafe24.springmvcstudy.regist.service.RegistService;
 import lombok.RequiredArgsConstructor;
