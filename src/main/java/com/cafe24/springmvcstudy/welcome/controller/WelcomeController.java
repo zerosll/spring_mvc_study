@@ -1,7 +1,7 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
 import com.cafe24.springmvcstudy.regist.vo.MemberVo;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @RequestMapping("/welcome")
 @Controller
@@ -33,13 +32,7 @@ public class WelcomeController {
      */
     @RequestMapping(value = "/produce", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody MemberVo produceTest() {
-        MemberVo memberVo = new MemberVo();
-        memberVo.setEmail("ehchoi@cafe24corp.com");
-        memberVo.setId(1l);
-        memberVo.setName("은혁");
-        memberVo.setPassword("1qaz2wsx");
-        memberVo.setRegisterDateTime(LocalDateTime.now());
-        return memberVo;
+        return getMemberVo();
     }
 
     /*
@@ -49,8 +42,21 @@ public class WelcomeController {
      consumes = MediaType.APPLICATION_XML_VALUE
      */
     @RequestMapping(value = "/consume", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody MemberVo consumeTest(@RequestBody MemberVo memberVo) {
-        log.debug("memberVo : {}", memberVo);
+    public @ResponseBody MemberVo consumeTest(String jsonObj) {
+
+        Gson gson = new Gson();
+        MemberVo memberVo2 = gson.fromJson(jsonObj, MemberVo.class);
+        log.debug("memberVo2 : {}", memberVo2);
+        return memberVo2;
+    }
+
+    private MemberVo getMemberVo() {
+        MemberVo memberVo = new MemberVo();
+        memberVo.setEmail("ehchoi@cafe24corp.com");
+        memberVo.setId(1l);
+        memberVo.setName("은혁");
+        memberVo.setPassword("1qaz2wsx");
+        memberVo.setRegisterDateTime(LocalDateTime.now());
 
         return memberVo;
     }
