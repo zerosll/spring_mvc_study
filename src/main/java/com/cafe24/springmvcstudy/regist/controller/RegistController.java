@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor
 @RequestMapping("/regist")
 @Controller
 public class RegistController {
 
-    private final RegistService registService;
+    private  RegistService registService;
+    public RegistController(RegistService registService) {
+        this.registService = registService;
+    }
 
     @RequestMapping("/step1")
     public String handleStep1() {

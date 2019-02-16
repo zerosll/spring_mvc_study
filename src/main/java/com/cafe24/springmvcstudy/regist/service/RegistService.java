@@ -19,4 +19,8 @@ public class RegistService {
         registVoMap.put(vo.getEmail(), vo);
     }
 
+    public Map<String, RegistVo> getRegistVoMap(){
+        return registVoMap;
+    }
+
 }
