@@ -1,6 +1,6 @@
 package com.cafe24.springmvcstudy.regist.service;
 
-import com.cafe24.springmvcstudy.regist.vo.RegistVo;
+import com.cafe24.springmvcstudy.regist.entity.RegistVo;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
