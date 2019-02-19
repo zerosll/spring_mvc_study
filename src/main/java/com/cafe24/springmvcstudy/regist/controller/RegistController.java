@@ -46,7 +46,6 @@ public class RegistController {
     @PostMapping("/step3")
     public String handleStep3(RegistVo regReq) {
         try {
-            System.out.println(regReq);
             registService.regist(regReq);
             return "register/step3";
         } catch (Exception ex) {
