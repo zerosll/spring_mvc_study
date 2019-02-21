@@ -11,16 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/regist")
 @Controller
 public class RegistController {
 
     private Logger log = LoggerFactory.getLogger(RegistController.class);
     private  final RegistService registService;
-    public RegistController(RegistService registService) {
+
+   /* public RegistController(RegistService registService) {
         this.registService = registService;
-    }
+    }*/
 
     @RequestMapping("/step1")
     public String handleStep1() {
@@ -34,7 +35,7 @@ public class RegistController {
         if (!agree) {
             return "register/step1";
         }
-        model.addAttribute("registVo", new RegistVo());
+        //model.addAttribute("registVo", new RegistVo());
         return "register/step2";
     }
 
@@ -44,7 +45,7 @@ public class RegistController {
     }
 
     @PostMapping("/step3")
-    public String handleStep3(RegistVo regReq) {
+    public String handleStep3(@ModelAttribute RegistVo regReq) {
         try {
             registService.regist(regReq);
             return "register/step3";

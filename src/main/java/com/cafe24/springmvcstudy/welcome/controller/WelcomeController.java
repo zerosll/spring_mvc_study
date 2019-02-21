@@ -16,7 +16,9 @@ public class WelcomeController {
 
     private Logger log = LoggerFactory.getLogger(WelcomeController.class);
 
-    @GetMapping("/hello")
+    //@GetMapping("/hello")
+    // /welcome/hello
+    @RequestMapping(value="/hello", method = RequestMethod.GET)
     public String hello(Model model, @RequestParam(value = "name", required = false) String name) {
 
         model.addAttribute("greeting", "안녕하세요, " + name);
@@ -29,7 +31,7 @@ public class WelcomeController {
      produces = MediaType.APPLICATION_JSON_UTF8_VALUE
      produces = MediaType.APPLICATION_XML_VALUE
      */
-    @RequestMapping(value = "/produce", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/produce", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
     public @ResponseBody
     MemberDto produceTest() {
         return getMemberVo();
