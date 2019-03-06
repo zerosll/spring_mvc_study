@@ -56,10 +56,8 @@ public class WelcomeController {
     private MemberDto getMemberVo() {
         MemberDto memberDto = new MemberDto();
         memberDto.setEmail("ehchoi@cafe24corp.com");
-        memberDto.setId(1l);
         memberDto.setName("은혁");
         memberDto.setPassword("1qaz2wsx");
-        memberDto.setRegisterDateTime(LocalDateTime.now());
 
         return memberDto;
     }

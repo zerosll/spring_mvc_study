@@ -13,22 +13,26 @@
     <div class="jumbotron mt-3">
         <h1>회원 정보 입력</h1>
         <div>
-            <form th:action="@{/regist/step3}" method="post" >
+            <form th:object="${memberDto}" th:action="@{/regist/step2}" method="post" >
                 <div class="mb-6">
                     <label for="email">이메일 </label>
-                    <input type="text" class="form-control" name="email" id="email" placeholder="" >
+                    <input type="text" class="form-control" th:field="*{email}" />
+                    <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                 </div>
                 <div class="mb-6">
                     <label for="name">이름 </label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="">
+                    <input type="text" class="form-control" th:field="*{name}" />
+                    <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                 </div>
                 <div class="mb-6">
                     <label for="password">비밀번호 </label>
-                    <input type="text" class="form-control" name="password" id="password" placeholder="">
+                    <input type="password" class="form-control" th:field="*{password}" />
+                    <small class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                 </div>
                 <div class="mb-6">
                     <label for="confirmPassword">비밀번호 확인 </label>
-                    <input type="text" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="">
+                    <input type="password" class="form-control" th:field="*{confirmPassword}" />
+                    <small class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
                 </div>
                 <hr class="mb-6">
                 <div class="row align-middle">
