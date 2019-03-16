@@ -1,6 +1,7 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
 import com.cafe24.springmvcstudy.regist.dto.MemberDto;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @RequestMapping("/welcome")
 @Controller
 public class WelcomeController {
 
-    private Logger log = LoggerFactory.getLogger(WelcomeController.class);
+    //private Logger log = LoggerFactory.getLogger(this.getClass());
 
     //@GetMapping("/hello")
     // /welcome/hello
@@ -22,6 +24,13 @@ public class WelcomeController {
     public String hello(Model model, @RequestParam(value = "name", required = false) String name) {
 
         model.addAttribute("greeting", "안녕하세요, " + name);
+
+
+        log.trace("A TRACE Message");
+        log.debug("A DEBUG Message");
+        log.info("An INFO Message");
+        log.warn("A WARN Message");
+        log.error("An ERROR Message");
         return ("welcome/hello");
     }
 
@@ -53,6 +62,7 @@ public class WelcomeController {
         return memberDto2;
     }
 
+
     private MemberDto getMemberVo() {
         MemberDto memberDto = new MemberDto();
         memberDto.setEmail("ehchoi@cafe24corp.com");
@@ -61,4 +71,6 @@ public class WelcomeController {
 
         return memberDto;
     }
+
+
 }
