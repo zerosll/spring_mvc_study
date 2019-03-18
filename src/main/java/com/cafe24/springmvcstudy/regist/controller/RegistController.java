@@ -14,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,7 +41,7 @@ public class RegistController {
     }
 
     @PostMapping("/step2")
-    public String handleStep2(@Valid MemberDto memberDto, BindingResult result) {
+    public String handleStep2(@Valid MemberDto memberDto, BindingResult result, RedirectAttributes redirectAttributes) {
         if (!memberDto.getPassword().equals(memberDto.getConfirmPassword())) {
             FieldError fieldError = new FieldError("memberDto", "confirmPassword", "암호가 일치하지 않습니다");
             result.addError(fieldError);

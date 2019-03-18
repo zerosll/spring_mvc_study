@@ -15,7 +15,15 @@ spring:
       username: sa
       password:
       driver-class-name: org.h2.Driver
+  mail:
+    host:
 #logging:
 #  level:
 #    root: info
 #    com.cafe24.springmvcstudy : debug
+
+mail:
+  name: eunhyuk
+  host:
+    ip: 127.0.0.1
+    port: 8080

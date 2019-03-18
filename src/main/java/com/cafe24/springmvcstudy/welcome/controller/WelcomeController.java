@@ -1,15 +1,12 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
+import com.cafe24.springmvcstudy.common.properties.MailProperties;
 import com.cafe24.springmvcstudy.regist.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @RequestMapping("/welcome")
@@ -17,6 +14,11 @@ import java.time.LocalDateTime;
 public class WelcomeController {
 
     //private Logger log = LoggerFactory.getLogger(this.getClass());
+    private final MailProperties mailProperties;
+
+    public WelcomeController(MailProperties mailProperties) {
+        this.mailProperties = mailProperties;
+    }
 
     //@GetMapping("/hello")
     // /welcome/hello
@@ -25,6 +27,8 @@ public class WelcomeController {
 
         model.addAttribute("greeting", "안녕하세요, " + name);
 
+        log.debug("메일 이름  : {}", mailProperties.getName());
+        log.debug("호스트   : {}", mailProperties.getHost());
 
         log.trace("A TRACE Message");
         log.debug("A DEBUG Message");
