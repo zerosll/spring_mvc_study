@@ -1,4 +1,4 @@
-package com.cafe24.springmvcstudy.core.entity;
+package com.cafe24.springmvcstudy.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

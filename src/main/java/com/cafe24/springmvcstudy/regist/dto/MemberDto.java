@@ -1,11 +1,10 @@
 package com.cafe24.springmvcstudy.regist.dto;
 
-import com.cafe24.springmvcstudy.core.entity.Member;
+import com.cafe24.springmvcstudy.member.entity.Member;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Data
