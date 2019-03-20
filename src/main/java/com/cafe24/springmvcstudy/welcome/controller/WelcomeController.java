@@ -3,10 +3,13 @@ package com.cafe24.springmvcstudy.welcome.controller;
 import com.cafe24.springmvcstudy.common.properties.MailProperties;
 import com.cafe24.springmvcstudy.regist.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @RequestMapping("/welcome")
@@ -28,7 +31,7 @@ public class WelcomeController {
         model.addAttribute("greeting", "안녕하세요, " + name);
 
         log.debug("메일 이름  : {}", mailProperties.getName());
-        log.debug("호스트   : {}", mailProperties.getHost());
+        log.debug("호스트   : {} asdhjasdklj {}", mailProperties.getHost(), 1);
 
         log.trace("A TRACE Message");
         log.debug("A DEBUG Message");
@@ -66,6 +69,17 @@ public class WelcomeController {
         return memberDto2;
     }
 
+
+    @GetMapping("/redirect")
+    public String helloPost(RedirectAttributes rttr, @RequestParam(value = "name", required = false) String name){
+        rttr.addFlashAttribute("greeting",name);
+        return "redirect:/welcome/receive";
+    }
+    @GetMapping("/receive")
+    public String receive(Model model){
+        log.debug(model.toString());
+        return "welcome/hello";
+    }
 
     private MemberDto getMemberVo() {
         MemberDto memberDto = new MemberDto();
