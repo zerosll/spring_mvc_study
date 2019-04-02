@@ -7,6 +7,7 @@
     <div class="jumbotron mt-3">
         <h1>회원 정보 입력</h1>
         <div>
+            <!--/*@thymesVar id="memberDto" type="com.cafe24.springmvcstudy.regist.MemberDto"*/-->
             <form th:object="${memberDto}" th:action="@{/regist/step2}" method="post" >
                 <div class="mb-6">
                     <label for="email">이메일 </label>

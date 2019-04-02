@@ -1,6 +1,6 @@
-package com.cafe24.springmvcstudy.regist.dto;
+package com.cafe24.springmvcstudy.regist;
 
-import com.cafe24.springmvcstudy.member.entity.Member;
+import com.cafe24.springmvcstudy.member.Member;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 

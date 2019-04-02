@@ -1,6 +1,6 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
-import com.cafe24.springmvcstudy.regist.dto.MemberDto;
+import com.cafe24.springmvcstudy.regist.MemberDto;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.time.LocalDateTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

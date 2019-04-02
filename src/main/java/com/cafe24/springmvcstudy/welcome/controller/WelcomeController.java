@@ -1,10 +1,8 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
 import com.cafe24.springmvcstudy.common.properties.MailProperties;
-import com.cafe24.springmvcstudy.regist.dto.MemberDto;
+import com.cafe24.springmvcstudy.regist.MemberDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

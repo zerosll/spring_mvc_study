@@ -2,13 +2,17 @@ spring:
   devtools:
     livereload:
       enabled: true
-    remote:
-      restart:
-        enabled: false
+    restart:
+      enabled: false
   thymeleaf:
     cache: false
   jpa:
-    database: h2
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.enable_lazy_load_no_trans: true
+      hibernate.show_sql: true
+      hibernate.format_sql: true
   datasource:
     hikari:
       jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
@@ -17,6 +21,8 @@ spring:
       driver-class-name: org.h2.Driver
   mail:
     host:
+  profiles:
+    active: local
 #logging:
 #  level:
 #    root: info
@@ -27,3 +33,12 @@ mail:
   host:
     ip: 127.0.0.1
     port: 8080
+
+# local
+---
+spring:
+  profiles: local
+
+  h2:
+    console:
+      enabled: true

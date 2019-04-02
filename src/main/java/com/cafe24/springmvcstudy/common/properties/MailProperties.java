@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "mail")
 public class MailProperties {
     private String name;
-    private Host host;
-}
+    private String pass;
+    private Host host = new Host();
 
-@Getter
-@Setter
-@ToString
-class Host {
-    private String ip;
-    private int port;
-
+    @Getter
+    @Setter
+    @ToString
+    public static class Host {
+        private String ip;
+        private int port;
+    }
 }

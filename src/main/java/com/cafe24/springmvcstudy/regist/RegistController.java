@@ -1,8 +1,6 @@
-package com.cafe24.springmvcstudy.regist.controller;
+package com.cafe24.springmvcstudy.regist;
 
-import com.cafe24.springmvcstudy.member.repository.MemberRepository;
-import com.cafe24.springmvcstudy.regist.dto.MemberDto;
-import com.cafe24.springmvcstudy.regist.service.RegistService;
+import com.cafe24.springmvcstudy.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

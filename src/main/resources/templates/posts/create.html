@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <form th:object="${creation}" th:action="@{/posts}" method="post">
+        <div class="form-group">
+            <label for="visibleType">공개 설정</label>
+            <select class="form-control" th:field="*{visibleType}">
+                <option th:each="state : ${T(com.cafe24.springmvcstudy.post.PostVisibleType).values()}"
+                        th:value="${state}"
+                        th:text="${state.name}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="title">제목 </label>
+            <input type="text" class="form-control" th:field="*{title}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+        </div>
+        <div class="form-group">
+            <label for="content">내용 </label>
+            <textarea class="form-control" th:field="*{content}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</th:block>
+
+</body>
+</html>

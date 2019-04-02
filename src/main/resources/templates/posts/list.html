@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- CSS -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- Content -->
+<th:block layout:fragment="content">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h2 class="pt-3">Section title</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a class="btn btn-sm btn-outline-secondary" th:href="@{/posts/create}">글쓰기</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>공개설정</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>이메일</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${page.content}">
+                <td th:text="${item.visibleType.name}"></td>
+                <td th:text="${item.title}"></td>
+                <td th:text="${item.content}"></td>
+                <td th:text="${item.memberEmail}"></td>
+                <td th:text="${item.createdAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example" th:if="${page.totalPages > 0}">
+            <ul class="pagination">
+                <li class="page-item" th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber==page.number + 1} ? active">
+                    <a class="page-link" th:href="@{/posts(page=${pageNumber}, size=${page.size})}"
+                       th:text="${pageNumber}"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</th:block>
+
+<!-- JAVASCRIPT -->
+<th:block layout:fragment="js">
+</th:block>
+
+</html>

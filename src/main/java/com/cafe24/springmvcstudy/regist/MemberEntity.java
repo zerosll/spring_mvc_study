@@ -1,11 +1,10 @@
-package com.cafe24.springmvcstudy.regist.entity;
+package com.cafe24.springmvcstudy.regist;
 
 import com.cafe24.springmvcstudy.common.exception.WrongIdPasswordException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @ToString

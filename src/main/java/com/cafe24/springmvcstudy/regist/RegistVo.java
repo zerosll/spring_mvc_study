@@ -1,4 +1,4 @@
-package com.cafe24.springmvcstudy.regist.entity;
+package com.cafe24.springmvcstudy.regist;
 
 import lombok.Getter;
 import lombok.Setter;
