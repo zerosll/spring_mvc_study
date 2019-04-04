@@ -2,6 +2,7 @@ package com.cafe24.springmvcstudy.storage;
 
 import com.cafe24.springmvcstudy.common.entity.BaseEntity;
 import com.cafe24.springmvcstudy.member.Member;
+import com.cafe24.springmvcstudy.post.Post;
 import com.cafe24.springmvcstudy.post.PostVisibleType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -28,4 +29,8 @@ public class FileInfo extends BaseEntity {
     private String type;
     private String location;
     private String link;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = true)
+    private Post post;
+
 }

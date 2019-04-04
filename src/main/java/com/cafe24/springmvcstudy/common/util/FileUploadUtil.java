@@ -20,16 +20,16 @@ import java.util.UUID;
 public class FileUploadUtil {
 
     private final UploadProperties uploadProperties;
-    private final FileInfoRepository fileInfoRepository;
+
 
     @Autowired
-    public FileUploadUtil(UploadProperties uploadProperties, FileInfoRepository fileInfoRepository) {
+    public FileUploadUtil(UploadProperties uploadProperties) {
         this.uploadProperties = uploadProperties;
-        this.fileInfoRepository = fileInfoRepository;
+
     }
 
 
-    public Long saveFile(MultipartFile file) {
+    public void saveFile(MultipartFile file) {
 
         String uploadPath = uploadProperties.getPath();
         if (file.isEmpty()) {
@@ -41,14 +41,11 @@ public class FileUploadUtil {
             destdir.mkdirs();
         }
         try {
-            String fileName = file.getOriginalFilename();
             String newFileName = newFileName(file);
             InputStream is = file.getInputStream();
 
-            Files.copy(is, Paths.get(uploadPath + "/" + newFileName(file)),
+            Files.copy(is, Paths.get(uploadPath + "/" + newFileName),
                     StandardCopyOption.REPLACE_EXISTING);
-
-            return setFileInfo(file, newFileName);
 
         } catch (IOException e) {
 
@@ -57,22 +54,12 @@ public class FileUploadUtil {
         }
 
     }
-    private String newFileName(MultipartFile file) {
+    public String newFileName(MultipartFile file) {
         String uuid = UUID.randomUUID().toString() + Long.toString(System.nanoTime()) ;
         String fileName = file.getOriginalFilename();
         String fileTitle = fileName.substring(0,fileName.lastIndexOf("."));
         String ext = fileName.substring(fileName.lastIndexOf("."));
 
         return uuid + ext;
-    }
-    private Long setFileInfo(MultipartFile file, String newFileName){
-        String fileName = file.getOriginalFilename();
-        FileInfo info = FileInfo.builder()
-                        .newName(newFileName)
-                        .orgName(fileName)
-                        .ext(fileName.substring(fileName.lastIndexOf(".")))
-                        .build();
-        FileInfo ret = fileInfoRepository.save(info);
-        return  ret.getSeq();
     }
 }
