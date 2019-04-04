@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.cafe24.springmvcstudy.member.QMember.member;
 import static com.cafe24.springmvcstudy.post.QPost.post;
+import static com.cafe24.springmvcstudy.storage.QFileInfo.fileInfo;
 
 public class PostRepositoryImpl extends QuerydslRepositorySupport implements PostRepositoryCustom {
 
@@ -26,6 +27,7 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
         if (q != null) {
             query.where(post.content.likeIgnoreCase(q + "%"));
         }
+        query.leftJoin(post.fileInfo, fileInfo);
 
         List<Post> list = getQuerydsl().applyPagination(pageable, query).fetch();
 

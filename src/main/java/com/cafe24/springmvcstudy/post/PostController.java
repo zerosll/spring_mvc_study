@@ -1,10 +1,12 @@
 package com.cafe24.springmvcstudy.post;
 
+import com.cafe24.springmvcstudy.common.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,17 +29,17 @@ public class PostController {
     private final PostRepository postRepository;
     private final PostService postService;
 
+
     @GetMapping("/create")
     public String create(PostDto.Creation creation) {
         return "posts/create";
     }
 
-    @PostMapping
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String store(@Valid PostDto.Creation creation, BindingResult result) {
         if (result.hasErrors()) {
             return "posts/create";
         }
-
         postService.createPosts(creation, "test@gmail.com");
 
         return "redirect:/posts";

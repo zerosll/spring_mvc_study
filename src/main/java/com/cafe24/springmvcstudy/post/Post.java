@@ -2,6 +2,7 @@ package com.cafe24.springmvcstudy.post;
 
 import com.cafe24.springmvcstudy.common.entity.BaseEntity;
 import com.cafe24.springmvcstudy.member.Member;
+import com.cafe24.springmvcstudy.storage.FileInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -25,5 +26,7 @@ public class Post extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonIgnore
     private Member member;
+    @OneToOne(optional = true)
+    private FileInfo fileInfo;
 }
 

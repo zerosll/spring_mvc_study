@@ -25,5 +25,5 @@
 /nbdist/
 /.nb-gradle/
 /logs/
-
+/uploads/
 generated/

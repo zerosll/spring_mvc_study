@@ -9,7 +9,7 @@
 <body>
 
 <th:block layout:fragment="content">
-    <form th:object="${creation}" th:action="@{/posts}" method="post">
+    <form th:object="${creation}" th:action="@{/posts}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="visibleType">공개 설정</label>
             <select class="form-control" th:field="*{visibleType}">
@@ -29,6 +29,12 @@
             <textarea class="form-control" th:field="*{content}"/>
             <small class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></small>
         </div>
+
+        <div class="form-group">
+            <label for="multipartFile">파일입력</label>
+            <input type="file" class="form-control-file" th:field="*{multipartFile}">
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </th:block>

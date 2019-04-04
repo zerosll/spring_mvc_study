@@ -23,10 +23,18 @@ spring:
     host:
   profiles:
     active: local
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+      location:
 #logging:
 #  level:
 #    root: info
 #    com.cafe24.springmvcstudy : debug
+upload:
+  path: ./uploads
 
 mail:
   name: eunhyuk
