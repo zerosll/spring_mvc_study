@@ -27,8 +27,8 @@ public class FileStorageService {
                 .orgName(fileName)
                 .ext(fileName.substring(fileName.lastIndexOf(".")))
                 .build();
-        FileInfo ret = fileInfoRepository.save(info);
-        log.info("[{}]newFileName : {}", ret.getSeq(), newFileName);
-        return ret;
+//        FileInfo ret = fileInfoRepository.save(info);
+//        log.info("[{}]newFileName : {}", ret.getSeq(), newFileName);
+        return info;
     }
 }

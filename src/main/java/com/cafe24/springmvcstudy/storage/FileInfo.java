@@ -30,7 +30,7 @@ public class FileInfo extends BaseEntity {
     private String location;
     private String link;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private Post post;
 
 }

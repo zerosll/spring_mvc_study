@@ -34,7 +34,7 @@ public class Application {
             Member member = Member.builder().email("test@gmail.com").name("test").password("test").build();
             Member savedMember = memberRepository.save(member);
 
-            LongStream.range(1, 11)
+            LongStream.range(1, 2)
                     .mapToObj(value -> {
                         return Post.builder().title("test" + value).content("content_" + value).visibleType(PostVisibleType.PRIVATE).build();
                     })

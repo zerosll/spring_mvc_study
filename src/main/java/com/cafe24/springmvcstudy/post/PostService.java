@@ -30,7 +30,20 @@ public class PostService {
 
         Post post = creation.toEntity();
         post.setFileInfo(fileInfo);
+        post.getFileInfo().setPost(post);
         post.setMember(member);
+
+//        MultipartFile multipartFile = creation.getMultipartFile();
+//        fileStorageService.saveFileToLocal(creation.getMultipartFile());
+//
+//        Post post = creation.toEntity();
+//        post.setMember(member);
+//        Post savedPost = postRepository.save(post);
+//
+//        FileInfo fileInfo = fileStorageService.saveFileInfoToDB(creation.getMultipartFile());
+//        fileInfo.setPost(savedPost);
+//        fileInfoRepository.save(fileInfo);
+
         return postRepository.save(post);
     }
 }
