@@ -27,7 +27,6 @@ public class Post extends BaseEntity {
     @JsonIgnore
     private Member member;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "post")
-    @JoinColumn(name="seq")
     private FileInfo fileInfo;
 }
 
