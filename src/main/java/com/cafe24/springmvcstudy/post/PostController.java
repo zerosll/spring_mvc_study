@@ -1,6 +1,5 @@
 package com.cafe24.springmvcstudy.post;
 
-import com.cafe24.springmvcstudy.common.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

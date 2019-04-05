@@ -4,6 +4,7 @@ import com.cafe24.springmvcstudy.storage.FileInfo;
 import com.cafe24.springmvcstudy.storage.FileInfoRepository;
 import com.cafe24.springmvcstudy.common.exception.StorageException;
 import com.cafe24.springmvcstudy.common.properties.UploadProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +18,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
+@Slf4j
 @Component
-public class FileUploadUtil {
+public class FileUtil {
 
     private final UploadProperties uploadProperties;
     /** 다운로드 버퍼 크기 */
@@ -28,7 +30,7 @@ public class FileUploadUtil {
     private static final String CHARSET = "utf-8";
 
     @Autowired
-    public FileUploadUtil(UploadProperties uploadProperties) {
+    public FileUtil(UploadProperties uploadProperties) {
         this.uploadProperties = uploadProperties;
 
     }
@@ -37,7 +39,7 @@ public class FileUploadUtil {
         return uploadProperties.getPath();
     }
 
-    public void saveFile(MultipartFile file) {
+    public String saveFile(MultipartFile file) {
 
         String uploadPath = uploadProperties.getPath();
         if (file.isEmpty()) {
@@ -55,6 +57,7 @@ public class FileUploadUtil {
             Files.copy(is, Paths.get(uploadPath + "/" + newFileName),
                     StandardCopyOption.REPLACE_EXISTING);
 
+            return newFileName;
         } catch (IOException e) {
 
             String msg = String.format("Failed to store file", file.getName());
@@ -69,6 +72,19 @@ public class FileUploadUtil {
         String ext = fileName.substring(fileName.lastIndexOf("."));
 
         return uuid + ext;
+    }
+
+
+    public static File getFile(FileInfo info) {
+        File file = new File(info.getLocation()+"/"+info.getNewName());
+
+        if(file.exists()) {
+            return file;
+        }
+
+        log.error("File Not FOUND !!!!!!!!! : {}", info.getLocation()+"/"+info.getNewName());
+        return null;
+
     }
 
     public static void download(HttpServletRequest request, HttpServletResponse response, File file, String realName) throws Exception {

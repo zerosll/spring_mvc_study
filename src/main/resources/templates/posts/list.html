@@ -24,6 +24,7 @@
                 <th>내용</th>
                 <th>이메일</th>
                 <th>등록일</th>
+                <th>파일다운</th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                 <td th:text="${item.content}"></td>
                 <td th:text="${item.memberEmail}"></td>
                 <td th:text="${item.createdAt}"></td>
+                <td><a  th:href="@{/file/download(fileSeq=${item.fileSeq})}" th:text="${item.fileName}"></a></td>
             </tr>
             </tbody>
         </table>

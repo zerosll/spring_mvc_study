@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class PostDto {
 
@@ -42,14 +43,19 @@ public class PostDto {
         private String content;
         private String memberEmail;
         private LocalDateTime createdAt;
-        private FileInfo fileInfo;
+        private String fileName ="";
+        private Long fileSeq = 0l;
         public Res(Post post) {
             this.visibleType = post.getVisibleType();
             this.title = post.getTitle();
             this.content = post.getContent();
             this.memberEmail = post.getMember().getEmail();
-            this.createdAt = post.getCreatedAt();
-            this.fileInfo = post.getFileInfo();
+
+            if(post.getFileInfo() != null){
+                this.fileName = Optional.of(post.getFileInfo().getOrgName()).orElse("");
+                this.fileSeq = post.getFileInfo().getSeq();
+            }
+
         }
     }
 }
