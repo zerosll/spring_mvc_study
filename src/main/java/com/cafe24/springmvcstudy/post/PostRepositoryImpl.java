@@ -27,7 +27,7 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
         if (q != null) {
             query.where(post.content.likeIgnoreCase(q + "%"));
         }
-        query.leftJoin(post.fileInfo, fileInfo);
+        query.leftJoin(post.fileInfo, fileInfo).fetchJoin();
 
         List<Post> list = getQuerydsl().applyPagination(pageable, query).fetch();
 
