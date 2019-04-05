@@ -42,14 +42,14 @@ public class PostDto {
         private String content;
         private String memberEmail;
         private LocalDateTime createdAt;
-        //private String fileName;
+        private FileInfo fileInfo;
         public Res(Post post) {
             this.visibleType = post.getVisibleType();
             this.title = post.getTitle();
             this.content = post.getContent();
             this.memberEmail = post.getMember().getEmail();
             this.createdAt = post.getCreatedAt();
-            //this.fileName = post.getFileInfo().getOrgName();
+            this.fileInfo = post.getFileInfo();
         }
     }
 }

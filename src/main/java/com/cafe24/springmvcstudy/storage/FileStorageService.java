@@ -25,6 +25,9 @@ public class FileStorageService {
         FileInfo info = FileInfo.builder()
                 .newName(newFileName)
                 .orgName(fileName)
+                .size(file.getSize())
+                .type(file.getContentType())
+                .location(fileUploadUtil.getFilePath())
                 .ext(fileName.substring(fileName.lastIndexOf(".")))
                 .build();
 //        FileInfo ret = fileInfoRepository.save(info);
