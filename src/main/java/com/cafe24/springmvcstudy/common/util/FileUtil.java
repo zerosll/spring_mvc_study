@@ -1,5 +1,6 @@
 package com.cafe24.springmvcstudy.common.util;
 
+import com.cafe24.springmvcstudy.common.exception.ResourceNotFoundException;
 import com.cafe24.springmvcstudy.storage.FileInfo;
 import com.cafe24.springmvcstudy.storage.FileInfoRepository;
 import com.cafe24.springmvcstudy.common.exception.StorageException;
@@ -43,7 +44,7 @@ public class FileUtil {
 
         String uploadPath = uploadProperties.getPath();
         if (file.isEmpty()) {
-            throw new StorageException("Failed to store empty file");
+            throw new ResourceNotFoundException("Failed to store empty file");
         }
         //디렉토리가 존재하지 않는다면 생성
         File destdir = new File(uploadPath);
