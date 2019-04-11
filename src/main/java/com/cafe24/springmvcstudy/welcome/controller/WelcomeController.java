@@ -2,6 +2,7 @@ package com.cafe24.springmvcstudy.welcome.controller;
 
 import com.cafe24.springmvcstudy.common.properties.MailProperties;
 import com.cafe24.springmvcstudy.regist.MemberDto;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @RequestMapping("/welcome")
+@AllArgsConstructor
 @Controller
 public class WelcomeController {
 
     //private Logger log = LoggerFactory.getLogger(this.getClass());
     private final MailProperties mailProperties;
 
-    public WelcomeController(MailProperties mailProperties) {
-        this.mailProperties = mailProperties;
-    }
+    //public WelcomeController(MailProperties mailProperties) {
+    //    this.mailProperties = mailProperties;
+    //}
 
     //@GetMapping("/hello")
     // /welcome/hello

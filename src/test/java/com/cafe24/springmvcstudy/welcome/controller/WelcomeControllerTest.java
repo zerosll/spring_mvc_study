@@ -1,5 +1,6 @@
 package com.cafe24.springmvcstudy.welcome.controller;
 
+import com.cafe24.springmvcstudy.common.properties.MailProperties;
 import com.cafe24.springmvcstudy.regist.MemberDto;
 import com.google.gson.Gson;
 import org.junit.Before;
@@ -7,21 +8,30 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 //@SpringBootTest
-@WebMvcTest(WelcomeController.class)
+//@WebMvcTest 사용시 다른 설정들은 자동으로 올리지 않기 때문에 @Repository나 @Resource, @Service, @Component등은 사용할 수 없습니다.
+
+@WebMvcTest(controllers = {WelcomeController.class})
 public class WelcomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    MailProperties mailProperties;
 
     private String json;
 
@@ -55,4 +65,6 @@ public class WelcomeControllerTest {
                 .andExpect(status().isOk())
                 ;
     }
+
+
 }
