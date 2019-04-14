@@ -55,7 +55,7 @@ public class FileUtil {
             String newFileName = newFileName(file);
             InputStream is = file.getInputStream();
 
-            Files.copy(is, Paths.get(uploadPath + "/" + newFileName),
+            Files.copy(is, Paths.get(uploadPath + File.separator + newFileName),
                     StandardCopyOption.REPLACE_EXISTING);
 
             return newFileName;

@@ -1,0 +1,52 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.enable_lazy_load_no_trans: true
+      hibernate.show_sql: true
+      hibernate.format_sql: true
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+  mail:
+    host:
+  profiles:
+    active: test
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+      location:
+#logging:
+#  level:
+#    root: info
+#    com.cafe24.springmvcstudy : debug
+upload:
+  path: d:/uploads
+
+mail:
+  name: aaaaa
+  host:
+    ip: 127.0.0.1
+    port: 8080
+
+# local
+---
+spring:
+  profiles: test
+
+  h2:
+    console:
+      enabled: true
