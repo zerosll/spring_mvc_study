@@ -50,6 +50,7 @@ public class PostDto {
             this.title = post.getTitle();
             this.content = post.getContent();
             this.memberEmail = post.getMember().getEmail();
+            this.createdAt = post.getCreatedAt();
 
             if(post.getFileInfo() != null){
                 this.fileName = Optional.of(post.getFileInfo().getOrgName()).orElse("");
