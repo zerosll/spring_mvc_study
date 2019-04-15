@@ -28,13 +28,18 @@ public class PostService {
                 .orElseThrow(() -> new NotFoundException(String.format("%s not found", email)));
 
         MultipartFile multipartFile = creation.getMultipartFile();
-        String newFileName = fileStorageService.saveFileToLocal(creation.getMultipartFile());
-        FileInfo fileInfo = fileStorageService.saveFileInfoToDB(creation.getMultipartFile(), newFileName);
+
 
         Post post = creation.toEntity();
-        post.setFileInfo(fileInfo);
-        post.getFileInfo().setPost(post);
+        if(!multipartFile.isEmpty()){
+            String newFileName = fileStorageService.saveFileToLocal(creation.getMultipartFile());
+            FileInfo fileInfo = fileStorageService.saveFileInfoToDB(creation.getMultipartFile(), newFileName);
+            post.setFileInfo(fileInfo);
+            post.getFileInfo().setPost(post);
+
+        }
         post.setMember(member);
+
 
 //        MultipartFile multipartFile = creation.getMultipartFile();
 //        fileStorageService.saveFileToLocal(creation.getMultipartFile());

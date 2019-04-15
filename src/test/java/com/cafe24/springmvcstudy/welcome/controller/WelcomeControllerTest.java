@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 //@SpringBootTest
 //@WebMvcTest 사용시 다른 설정들은 자동으로 올리지 않기 때문에 @Repository나 @Resource, @Service, @Component등은 사용할 수 없습니다.
-
 @WebMvcTest(controllers = {WelcomeController.class})
 public class WelcomeControllerTest {
     @Autowired
