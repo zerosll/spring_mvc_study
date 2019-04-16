@@ -50,3 +50,7 @@ spring:
   h2:
     console:
       enabled: true
+  cache:
+    type: redis
+  redis:
+    host: 192.168.33.10

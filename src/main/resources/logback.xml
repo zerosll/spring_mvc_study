@@ -35,6 +35,7 @@
     <logger name="org.quartz.core" level="INFO"/>
     <logger name="org.h2.server.web" level="INFO"/>
     <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG"/>
     <logger name="com.cafe24.springmvcstudy" level="DEBUG">
         <appender-ref ref="FILE" />
     </logger>

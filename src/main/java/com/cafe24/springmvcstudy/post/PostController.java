@@ -1,5 +1,7 @@
 package com.cafe24.springmvcstudy.post;
 
+import com.cafe24.springmvcstudy.category.CategoryService;
+import com.cafe24.springmvcstudy.common.annotation.IncludeCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -27,10 +29,12 @@ public class PostController {
 
     private final PostRepository postRepository;
     private final PostService postService;
+    private final CategoryService categoryService;
 
 
     @GetMapping("/create")
     public String create(PostDto.Creation creation) {
+        categoryService.createCategory();
         return "posts/create";
     }
 
@@ -45,6 +49,7 @@ public class PostController {
     }
 
     @GetMapping
+    @IncludeCategory
     public String list(@RequestParam(required = false) String q, @PageableDefault(size = 5) final Pageable pageable, Model model) {
 
         Page<PostDto.Res> page = postRepository.search(q, pageable).map(PostDto.Res::new);

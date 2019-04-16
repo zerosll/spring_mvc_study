@@ -25,7 +25,6 @@ public class RegistController {
 
     private final MemberRepository memberRepository;
     private final RegistService registService;
-    private final ModelMapper modelMapper;
 
     @GetMapping("/step1")
     public String handleStep1() {
@@ -60,6 +59,7 @@ public class RegistController {
 
     @GetMapping("/list")
     public String list(Model model) {
+        ModelMapper modelMapper = new ModelMapper();
         List<MemberDto> memberList = memberRepository.findAll().stream().map(member -> modelMapper.map(member, MemberDto.class)).collect(Collectors.toList());
         model.addAttribute("memberList", memberList);
         return "register/list";
