@@ -1,5 +1,6 @@
 package com.cafe24.springmvcstudy.post;
 
+import com.cafe24.springmvcstudy.common.annotation.ProgressTime;
 import com.cafe24.springmvcstudy.common.exception.NotFoundException;
 import com.cafe24.springmvcstudy.member.Member;
 import com.cafe24.springmvcstudy.member.MemberRepository;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Service
 @RequiredArgsConstructor
-
+@ProgressTime
 public class PostService {
 
     private final MemberRepository memberRepository;

@@ -1,5 +1,6 @@
 package com.cafe24.springmvcstudy.regist;
 
+import com.cafe24.springmvcstudy.common.annotation.ProgressTime;
 import com.cafe24.springmvcstudy.regist.RegistVo;
 import org.springframework.stereotype.Service;
 

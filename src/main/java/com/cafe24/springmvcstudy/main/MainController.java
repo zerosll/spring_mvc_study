@@ -1,5 +1,6 @@
 package com.cafe24.springmvcstudy.main;
 
+import com.cafe24.springmvcstudy.common.annotation.ProgressTime;
 import com.cafe24.springmvcstudy.regist.RegistService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ public class MainController {
     private final RegistService registService;
 
     @RequestMapping("/")
+    @ProgressTime
     public String home(Model model) {
         model.addAttribute("count", registService.getRegistVoMap().size());
         log.info("test2");
