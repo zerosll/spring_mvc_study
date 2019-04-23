@@ -76,7 +76,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public FilterRegistrationBean logFilter() {
+    public FilterRegistrationBean<CommonsRequestLoggingFilter> logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
         filter.setIncludeClientInfo(true);
         filter.setIncludeHeaders(true);
@@ -85,9 +85,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         filter.setMaxPayloadLength(10000);
         filter.setAfterMessagePrefix("REQUEST DATA : ");
 
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        FilterRegistrationBean<CommonsRequestLoggingFilter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(filter);
-        filterRegistrationBean.addUrlPatterns("/**");
+        filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.setOrder(1);
         return filterRegistrationBean;
     }

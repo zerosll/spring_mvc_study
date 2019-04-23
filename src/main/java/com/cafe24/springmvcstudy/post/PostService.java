@@ -7,6 +7,8 @@ import com.cafe24.springmvcstudy.member.MemberRepository;
 import com.cafe24.springmvcstudy.storage.FileInfo;
 import com.cafe24.springmvcstudy.storage.FileStorageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 @RequiredArgsConstructor
 @ProgressTime
+@Slf4j
 public class PostService {
 
     private final MemberRepository memberRepository;
@@ -58,5 +61,16 @@ public class PostService {
 
     public void executeFileDownload(HttpServletRequest request, HttpServletResponse response, Long fileSeq) throws Exception {
         fileStorageService.executeFileDownload(request, response, fileSeq);
+    }
+
+    @Async
+    public void testAsync() {
+        try {
+            log.debug("testAsync start");
+            Thread.sleep(1000);
+            log.debug("testAsync end");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
