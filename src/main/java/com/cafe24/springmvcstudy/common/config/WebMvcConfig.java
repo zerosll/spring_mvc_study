@@ -55,6 +55,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/download/**").addResourceLocations(uploadProperties.getPath());
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/").setCachePeriod(20);
     }
 
     @Override
