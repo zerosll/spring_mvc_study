@@ -53,4 +53,5 @@ spring:
   cache:
     type: redis
   redis:
-    host: 192.168.33.10
+    host: 192.168.56.101
+    password: 1q2w3e4r5t

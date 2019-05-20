@@ -27,7 +27,7 @@ public class CommonInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    @Override
+ /*   @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         log.debug("============================= After Method");
         HandlerMethod method = (HandlerMethod) handler;
@@ -40,7 +40,7 @@ public class CommonInterceptor implements HandlerInterceptor {
             modelAndView.addObject("categoryList", categoryList);
             log.info("================================ Model에 카테고리 포함");
         }
-    }
+    }*/
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {

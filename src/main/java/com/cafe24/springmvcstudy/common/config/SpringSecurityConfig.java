@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
+
 
 @Configuration
 @EnableWebSecurity
@@ -19,10 +22,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    AuthFailureHandler authFailureHandler;
+    private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    AuthSuccessHandler authSuccessHandler;
+    private AuthSuccessHandler authSuccessHandler;
+
+    @Autowired
+    private FindByIndexNameSessionRepository sessionRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -54,6 +60,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .httpBasic();
 
+        http.sessionManagement()
+                //세션 허용개수 : 1개
+                .maximumSessions(1)
+                //이미 로그인 중일 경우 로그인이 안된다.
+                //false일 경우 기존 사용자의 세션이 종료된다.
+                .maxSessionsPreventsLogin(false)
+                //중복 로그인이 발생했을 경우 이동할 주소(원인을 알려줄 주소)
+                .expiredUrl("/error")
+                //만료된 세션 전략?
+                //.expiredSessionStrategy()
+                //세션 레지스트리?
+                .sessionRegistry(sessionRegistry());
+
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -64,6 +83,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public SpringSessionBackedSessionRegistry sessionRegistry() {
+        return new SpringSessionBackedSessionRegistry<>(this.sessionRepository);
     }
 }
 
